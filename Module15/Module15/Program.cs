@@ -6,20 +6,23 @@ namespace Module15
     {
         static void Main(string[] args)
         {
-            static long Factorial(int number)
+            var contacts = new List<Contact>()
             {
-                var numbers = new List<int>();
+               new Contact() { Name = "Андрей", Phone = 79994500508 },
+               new Contact() { Name = "Сергей", Phone = 799990455 },
+               new Contact() { Name = "Иван", Phone = 79999675334 },
+               new Contact() { Name = "Игорь", Phone = 8884994 },
+               new Contact() { Name = "Анна", Phone = 665565656 },
+               new Contact() { Name = "Василий", Phone = 3434 }
+            };
 
-                for (int i = 1; i <= number; i++)
-                    numbers.Add(i);
+            var correctNumber = (from contact in contacts
+                                 let phoneString = contact.Phone.ToString()
+                                 where phoneString.Length != 11 || !phoneString.StartsWith("7")
+                                 select contact).
+                                 Count();
 
-                return numbers.Aggregate((x, y) => x * y);
-            }
-
-            var result1 = Factorial(1);
-            var result2 = Factorial(2);
-            var result3 = Factorial(3);
-            Console.WriteLine($"Первый результат: {result1}\nВторой результат: {result2}\nТретий результат: {result3}");
+                Console.WriteLine(correctNumber);
         }
     }
 }
