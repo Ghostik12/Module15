@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Module15
 {
@@ -6,37 +7,23 @@ namespace Module15
     {
         static void Main(string[] args)
         {
-            var contacts = new List<Contact>()
+            var inputList = new List<double>();
+            while (true)
             {
-               new Contact() { Name = "Андрей", Phone = 79994500508 },
-               new Contact() { Name = "Сергей", Phone = 799990455 },
-               new Contact() { Name = "Иван", Phone = 79999675334 },
-               new Contact() { Name = "Игорь", Phone = 8884994 },
-               new Contact() { Name = "Анна", Phone = 665565656 },
-               new Contact() { Name = "Василий", Phone = 3434 }
-            };
+                var input = double.TryParse(Console.ReadLine(), out double number);
+                //var inputList = new List<double>();
 
-            var correctNumber = (from contact in contacts
-                                 let phoneString = contact.Phone.ToString()
-                                 where phoneString.Length != 11 || !phoneString.StartsWith("7")
-                                 select contact).
-                                 Count();
-
-                Console.WriteLine(correctNumber);
-
-            var numberPhone = new int[] { 10, 4, 6, 6 };
-            var result = Avarage(numberPhone);
-
-            Console.WriteLine(result);
-        }
-
-        static double Avarage(int[] numbers)
-        {
-            var numbersList = new List<int>();
-            foreach (int number in numbers)
-                numbersList.Add(number);
-
-            return numbersList.Sum()/(double)numbersList.Count;
+                if (!input)
+                {
+                    Console.WriteLine("Введите число");
+                }
+                else
+                {
+                    inputList.Add(number);
+                    Console.WriteLine($"Количество чисел: {inputList.Count}\nСумма чисел: {inputList.Sum()}\n" +
+                        $"Наибольшее число: {inputList.Max()}\n"+$"Наименьшее число: {inputList.Min()}\nСреднее число:{inputList.Average()}");
+                }
+            }
         }
     }
 }
