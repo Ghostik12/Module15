@@ -23,6 +23,20 @@ namespace Module15
                                  Count();
 
                 Console.WriteLine(correctNumber);
+
+            var numberPhone = new int[] { 10, 4, 6, 6 };
+            var result = Avarage(numberPhone);
+
+            Console.WriteLine(result);
+        }
+
+        static double Avarage(int[] numbers)
+        {
+            var numbersList = new List<int>();
+            foreach (int number in numbers)
+                numbersList.Add(number);
+
+            return numbersList.Sum()/(double)numbersList.Count;
         }
     }
 }
