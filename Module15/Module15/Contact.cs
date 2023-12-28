@@ -2,11 +2,15 @@
 {
     internal class Contact
     {
-        public Contact()
-        {
-        }
+        public string Name;
+        public long NumberPhone;
+        public string Email;
 
-        public string Name { get; set; }
-        public long Phone { get; set; }
+        public Contact(string name, long numberPhone, string email)
+        {
+            Name = name;
+            NumberPhone = numberPhone;
+            Email = email;
+        }
     }
 }
