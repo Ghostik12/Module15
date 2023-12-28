@@ -27,7 +27,9 @@ namespace Module15
                 {
                     DepartmentName = d.Name,
                     EmployeeName = emp.Select(e => e.Name)
-                });
+                }).ToArray();
+
+            employees.Add(new Employee() { DepartmentId = 2, Name = "Seva", Id = 1 });
 
             foreach(var department in result) 
             {
