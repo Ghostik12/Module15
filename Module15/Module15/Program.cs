@@ -20,18 +20,22 @@ namespace Module15
                 new Employee() { DepartmentId = 3, Name = "Альберт ", Id = 4},
             };
 
-            var result = employees.Join(departments,
-                employee => employee.DepartmentId,
-                dep => dep.Id,
-                (employee, dep) =>
-                new
+            var result = departments.GroupJoin(employees,
+                d => d.Id,
+                emp => emp.DepartmentId,
+                (d, emp) => new
                 {
-                    EmployeeName = employee.Name,
-                    DepartmentName = dep.Name
+                    DepartmentName = d.Name,
+                    EmployeeName = emp.Select(e => e.Name)
                 });
 
-            foreach (var department in result)
-                Console.WriteLine(department.EmployeeName + " - " + department.DepartmentName);
+            foreach(var department in result) 
+            {
+                Console.WriteLine(department.DepartmentName + ": ");
+
+                foreach (var employee in department.EmployeeName)
+                    Console.WriteLine(employee);
+            }
         }
     }
 }
